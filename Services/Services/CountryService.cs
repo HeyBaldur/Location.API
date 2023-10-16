@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Common;
+using Microsoft.Extensions.Logging;
 using Models.V1;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -6,6 +7,7 @@ using Services.Data;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -41,17 +43,24 @@ namespace Services.Services
         /// <param name="keyword"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<List<Country>> GetCountryByKeyword(string keyword)
+        public async Task<GenericOperationResponse<List<Country>>> GetCountryByKeyword(string keyword)
         {
-            // Create a regex pattern for a case-insensitive partial match
-            var regexPattern = new BsonRegularExpression(new Regex(keyword, RegexOptions.IgnoreCase));
+            try
+            {
+                // Create a regex pattern for a case-insensitive partial match
+                var regexPattern = new BsonRegularExpression(new Regex(keyword, RegexOptions.IgnoreCase));
 
-            // Create a filter for the 'name' property with a partial match
-            var filter = Builders<Country>.Filter.Regex("name", regexPattern);
+                // Create a filter for the 'name' property with a partial match
+                var filter = Builders<Country>.Filter.Regex("name", regexPattern);
 
-            var results = await _countryCollection.Find(filter).ToListAsync();
+                var results = await _countryCollection.Find(filter).ToListAsync();
 
-            return results;
+                return new GenericOperationResponse<List<Country>>(results, "Success", HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return new GenericOperationResponse<List<Country>>(true, $"Error: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Models.V1;
+﻿using Common;
+using Models.V1;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,6 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        Task<List<Country>> GetCountryByKeyword(string keyword);
+        Task<GenericOperationResponse<List<Country>>> GetCountryByKeyword(string keyword);
     }
 }
