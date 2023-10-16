@@ -39,12 +39,12 @@ We welcome contributions from the open-source community. To contribute to this p
 
 ## License
 
-This project is open-source and is available under the [License Name]. See the [LICENSE.md](LICENSE.md) file for details.
+This project is open-source and is available under the [MIT License](https://opensource.org/licenses/MIT). You can find the full text of the license in the provided link.
 
 ## Contact
 
-For questions or support, please [open an issue](https://github.com/yourusername/your-repo/issues) on GitHub.
+For questions or support, please [open an issue](https://github.com/HeyBaldur/Location.API/issues) on GitHub.
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/your-repo)](https://github.com/yourusername/your-repo/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/yourusername/your-repo)](https://github.com/HeyBaldur/Location.API/stargazers)
 
 We appreciate your interest in this open-source project. Feel free to use, extend, and contribute to make it even better!
