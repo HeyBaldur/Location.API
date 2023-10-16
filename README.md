@@ -1,5 +1,10 @@
 # OpenSource API for Accessing Countries, Regions, and Subregions
 
+[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-green)](https://shields.io/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Yes-brightgreen)](https://shields.io/)
+[![.NET](https://img.shields.io/badge/.NET-5.0-purple)](https://shields.io/)
+
+
 This is an open-source API developed in ASP.NET Core 5.0 and C# for accessing information about countries, regions, subregions, and more. It is powered by a MongoDB database to provide a robust and flexible data storage solution.
 
 ## Features
