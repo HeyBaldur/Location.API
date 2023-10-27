@@ -17,6 +17,7 @@ namespace Services.Services
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<Country> _countryCollection;
+        private readonly IMongoCollection<City> _cityCollection;
         private readonly ILogger<CountryService> _logger;
 
         /// <summary>
@@ -35,6 +36,33 @@ namespace Services.Services
             _logger = logger;
 
             _countryCollection = _database.GetCollection<Country>("countries");
+
+            _cityCollection = _database.GetCollection<City>("cities"); ;
+        }
+
+        /// <summary>
+        /// Get all city information.
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public async Task<GenericOperationResponse<List<City>>> GetCityByKeyword(string keyword)
+        {
+            try
+            {
+                // Create a regex pattern for a case-insensitive partial match
+                var regexPattern = new BsonRegularExpression(new Regex(keyword, RegexOptions.IgnoreCase));
+
+                // Create a filter for the 'name' property with a partial match
+                var filter = Builders<City>.Filter.Regex("name", regexPattern);
+
+                var results = await _cityCollection.Find(filter).ToListAsync();
+
+                return new GenericOperationResponse<List<City>>(results, "Success", HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return new GenericOperationResponse<List<City>>(true, $"Error: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
         }
 
         /// <summary>

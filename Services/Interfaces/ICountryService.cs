@@ -13,5 +13,13 @@ namespace Services.Interfaces
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<GenericOperationResponse<List<Country>>> GetCountryByKeyword(string keyword);
+
+        /// <summary>
+        /// Get a city.
+        /// City will return all the information including the name of the country.
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        Task<GenericOperationResponse<List<City>>> GetCityByKeyword(string keyword);
     }
 }

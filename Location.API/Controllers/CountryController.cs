@@ -25,19 +25,19 @@ namespace Location.API.Controllers
         }
 
         /// <summary>
-        /// Get a country by keyword.
+        /// Return the city information including the country name.
         /// </summary>
-        /// <param name="keyword"></param>
+        /// <param name="cityName"></param>
         /// <returns></returns>
-        [HttpPost("keyword")]
-        [ProducesResponseType(typeof(List<Country>), StatusCodes.Status200OK)]
+        [HttpGet("{cityName}")]
+        [ProducesResponseType(typeof(List<City>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetCountry(string keyword)
+        public async Task<IActionResult> GetCity(string cityName)
         {
             var result = await _countryService
-                .GetCountryByKeyword(keyword);
+                .GetCityByKeyword(cityName);
 
             return ControllerExtensions.HttpResult(this, result.StatusCode, result);
         }
